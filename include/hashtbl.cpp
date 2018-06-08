@@ -53,7 +53,45 @@ bool HashTabl<KeyType,DataType>::insert(const KeyType & k_, const DataType & d_)
 	se possuir inserir na frente da lista encadeada,
 	se não basta inserir o elemento na lista.*/
 
+	// Verifica se possui espaço suficiente.
+	if( m_count >= m_size){
+		auto last(m_data_table);
+		m_size = nextPrimo(m_size*2);
+		std::unique_ptr<std::forward_list< Entry > [] > * new_data_table = new std::forward_list<Entry>[m_size];
 
+		for( auto & i : m_data_table )
+		{
+			new_data_table.push_front(i);
+		}
+
+		delete [] m_data_table;
+		m_data_table = new_data_table;
+	}
+
+	bool possui_elemento = false;
+
+	// Verifica se já possui algum elemento na chave;
+	for( auto & i : m_data_table ){
+		if( i.key == k_ ){
+			for( auto & j : i ){
+				if( j.d_ == d_)
+					possui_elemento == true;
+			}
+			if(!possui_elemento)
+			{
+				i.push_front(new HashEntry(k_, d_));
+				++m_count;
+				return true;
+			}
+
+		}
+	}
+
+	m_data_table.push_front(new HashEntry(k_, d_));
+	++m_count;
+	return true;
+
+	return false;
 
 }
 

@@ -23,7 +23,7 @@ private:
 	bool nextPrimo();
 	unsigned int m_size;
 	unsigned int m_count;
-	std::unique_ptr<std::forward_list< Entry > [] > * m_data_table;
+	std::unique_ptr<std::forward_list< Entry > [] > * m_data_table;	// <-- Aqui seria no caso só isso ou tem que criar um outro ponteiro.
 }
 
 #include "hashtbl.cpp"

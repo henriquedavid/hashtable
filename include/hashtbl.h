@@ -18,11 +18,12 @@ public:
 	void print() const;
 
 private:
+	static const short DEFAULT_SIZE = 11;
 	void rehash();
+	bool nextPrimo();
 	unsigned int m_size;
 	unsigned int m_count;
-	std::forward_list< Entry > * m_data_table;
-	static const short DEFAULT_SIZE = 11;
+	std::unique_ptr<std::forward_list< Entry > [] > * m_data_table;
 }
 
 #include "hashtbl.cpp"

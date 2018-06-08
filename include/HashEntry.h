@@ -7,3 +7,4 @@ public:
 	KeyType m_key;
 	DataType m_data;
 };
+

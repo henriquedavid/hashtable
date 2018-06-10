@@ -1,0 +1,97 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.13"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Projeto Tabela de Dispersão: Código-Fonte de include/hashtbl.h</title>
+<link href="../../tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../jquery.js"></script>
+<script type="text/javascript" src="../../dynsections.js"></script>
+<link href="../../search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="../../search/searchdata.js"></script>
+<script type="text/javascript" src="../../search/search.js"></script>
+<link href="../../doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td id="projectalign" style="padding-left: 0.5em;">
+   <div id="projectname">Projeto Tabela de Dispersão
+   &#160;<span id="projectnumber">1.0</span>
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.13 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Localizar');
+</script>
+<script type="text/javascript" src="../../menudata.js"></script>
+<script type="text/javascript" src="../../menu.js"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div id="nav-path" class="navpath">
+  <ul>
+<li class="navelem"><a class="el" href="../../dir_d44c64559bbebec7f509842c48db8b23.html">include</a></li>  </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+  <div class="headertitle">
+<div class="title">hashtbl.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="../../d8/d3d/hashtbl_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;<span class="preprocessor">#ifndef HASH_TBL</span></div><div class="line"><a name="l00002"></a><span class="lineno">    2</span>&#160;<span class="preprocessor">#define HASH_TBL</span></div><div class="line"><a name="l00003"></a><span class="lineno">    3</span>&#160;</div><div class="line"><a name="l00004"></a><span class="lineno">    4</span>&#160;<span class="preprocessor">#include &lt;memory&gt;</span></div><div class="line"><a name="l00005"></a><span class="lineno">    5</span>&#160;<span class="preprocessor">#include &lt;forward_list&gt;</span></div><div class="line"><a name="l00006"></a><span class="lineno">    6</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../d9/d09/HashEntry_8h.html">HashEntry.h</a>&quot;</span></div><div class="line"><a name="l00007"></a><span class="lineno">    7</span>&#160;</div><div class="line"><a name="l00012"></a><span class="lineno">   12</span>&#160;<span class="keyword">template</span> &lt; <span class="keyword">typename</span> KeyType,</div><div class="line"><a name="l00013"></a><span class="lineno">   13</span>&#160;           <span class="keyword">typename</span> DataType,</div><div class="line"><a name="l00014"></a><span class="lineno">   14</span>&#160;           <span class="keyword">typename</span> KeyHash = std::hash&lt; KeyType &gt;,</div><div class="line"><a name="l00015"></a><span class="lineno">   15</span>&#160;           <span class="keyword">typename</span> KeyEqual = std::equal_to&lt; KeyHash &gt; &gt;   </div><div class="line"><a name="l00016"></a><span class="lineno"><a class="line" href="../../d7/d76/classHashTbl.html">   16</a></span>&#160;<span class="keyword">class </span><a class="code" href="../../d7/d76/classHashTbl.html">HashTbl</a>{</div><div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;<span class="keyword">public</span>:</div><div class="line"><a name="l00018"></a><span class="lineno">   18</span>&#160;</div><div class="line"><a name="l00020"></a><span class="lineno"><a class="line" href="../../d7/d76/classHashTbl.html#ab9ca4e5818aa21557c7cedaf02a1e7db">   20</a></span>&#160;    <span class="keyword">using</span> <a class="code" href="../../d8/d4b/classHashEntry.html">Entry</a> = <a class="code" href="../../d8/d4b/classHashEntry.html">HashEntry&lt; KeyType, DataType &gt;</a>;</div><div class="line"><a name="l00021"></a><span class="lineno">   21</span>&#160;</div><div class="line"><a name="l00028"></a><span class="lineno">   28</span>&#160;    <a class="code" href="../../d7/d76/classHashTbl.html#a8601e6be68360a7845319a6cd32612ee">HashTbl</a> ( <span class="keywordtype">size_t</span> tbl_size_ = <a class="code" href="../../d7/d76/classHashTbl.html#aeffa5b1a163fb6a09a18fd254a4d6dcf">DEFAULT_SIZE</a> );</div><div class="line"><a name="l00029"></a><span class="lineno">   29</span>&#160;    <a class="code" href="../../d7/d76/classHashTbl.html#a20c8c81ad708dba82b1c99cf8b59b97f">~HashTbl</a>();</div><div class="line"><a name="l00038"></a><span class="lineno">   38</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="../../d7/d76/classHashTbl.html#a5abe7dd52a783fbfa005bcfbb6fdea3e">insert</a>( <span class="keyword">const</span> KeyType &amp; k_, <span class="keyword">const</span> DataType &amp; d_ );</div><div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;    <span class="keywordtype">bool</span> <span class="keyword">remove</span>( <span class="keyword">const</span> KeyType &amp; k_ );</div><div class="line"><a name="l00049"></a><span class="lineno">   49</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="../../d7/d76/classHashTbl.html#adbe3cac7c4109dd57627e1f87257202b">retrieve</a>( <span class="keyword">const</span> KeyType &amp; k_, DataType &amp; d_ ) <span class="keyword">const</span>;</div><div class="line"><a name="l00050"></a><span class="lineno">   50</span>&#160;</div><div class="line"><a name="l00056"></a><span class="lineno">   56</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d76/classHashTbl.html#a633936911dbdc769be2dfdae84416e5a">clear</a>();</div><div class="line"><a name="l00057"></a><span class="lineno">   57</span>&#160;</div><div class="line"><a name="l00059"></a><span class="lineno">   59</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="../../d7/d76/classHashTbl.html#af0a640cbc448ffc7a874ec3ce2a28bd2">empty</a>( <span class="keywordtype">void</span> ) <span class="keyword">const</span>;</div><div class="line"><a name="l00061"></a><span class="lineno">   61</span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/d76/classHashTbl.html#ad5b97ce68300b96e51cc168bab5bd072">count</a>( <span class="keywordtype">void</span> ) <span class="keyword">const</span>;</div><div class="line"><a name="l00062"></a><span class="lineno">   62</span>&#160;</div><div class="line"><a name="l00068"></a><span class="lineno">   68</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d76/classHashTbl.html#a4b78fa6241832fc1d4d8987df0f4fabe">print</a>() <span class="keyword">const</span>;</div><div class="line"><a name="l00069"></a><span class="lineno">   69</span>&#160;</div><div class="line"><a name="l00070"></a><span class="lineno">   70</span>&#160;<span class="keyword">private</span>:</div><div class="line"><a name="l00071"></a><span class="lineno"><a class="line" href="../../d7/d76/classHashTbl.html#aeffa5b1a163fb6a09a18fd254a4d6dcf">   71</a></span>&#160;    <span class="keyword">static</span> <span class="keyword">const</span> <span class="keywordtype">short</span> <a class="code" href="../../d7/d76/classHashTbl.html#aeffa5b1a163fb6a09a18fd254a4d6dcf">DEFAULT_SIZE</a> = 11;</div><div class="line"><a name="l00082"></a><span class="lineno">   82</span>&#160;    <span class="keywordtype">void</span> <a class="code" href="../../d7/d76/classHashTbl.html#a7cebfea55f49e14efd80cbcb2852171e">rehash</a>();</div><div class="line"><a name="l00084"></a><span class="lineno">   84</span>&#160;    <span class="keywordtype">bool</span> <a class="code" href="../../d7/d76/classHashTbl.html#a71ce28f91782a9c92b1c87727668ba04">ehprimo</a>(<span class="keywordtype">size_t</span> number);</div><div class="line"><a name="l00086"></a><span class="lineno">   86</span>&#160;    <span class="keywordtype">size_t</span> <a class="code" href="../../d7/d76/classHashTbl.html#aa85eb1e9ae9c838111b71a6ca464e9a5">nextPrimo</a>(<span class="keywordtype">size_t</span> number);</div><div class="line"><a name="l00088"></a><span class="lineno"><a class="line" href="../../d7/d76/classHashTbl.html#acb5d99413eab0f528c43c01186ac7276">   88</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/d76/classHashTbl.html#acb5d99413eab0f528c43c01186ac7276">m_size</a>;</div><div class="line"><a name="l00090"></a><span class="lineno"><a class="line" href="../../d7/d76/classHashTbl.html#a2ecc779b66589db1ed8167fe9b81a6c9">   90</a></span>&#160;    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> <a class="code" href="../../d7/d76/classHashTbl.html#a2ecc779b66589db1ed8167fe9b81a6c9">m_count</a>;</div><div class="line"><a name="l00092"></a><span class="lineno"><a class="line" href="../../d7/d76/classHashTbl.html#af4bbcaeab668db62a8ca1d353377a4a4">   92</a></span>&#160;    std::unique_ptr&lt;std::forward_list&lt; Entry &gt; [] &gt; <a class="code" href="../../d7/d76/classHashTbl.html#af4bbcaeab668db62a8ca1d353377a4a4">m_data_table</a>;</div><div class="line"><a name="l00093"></a><span class="lineno">   93</span>&#160;};</div><div class="line"><a name="l00094"></a><span class="lineno">   94</span>&#160;</div><div class="line"><a name="l00095"></a><span class="lineno">   95</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="../../dd/d15/hashtbl_8inl.html">hashtbl.inl</a>&quot;</span></div><div class="line"><a name="l00096"></a><span class="lineno">   96</span>&#160;</div><div class="line"><a name="l00097"></a><span class="lineno">   97</span>&#160;<span class="preprocessor">#endif</span></div><div class="ttc" id="classHashTbl_html_a20c8c81ad708dba82b1c99cf8b59b97f"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#a20c8c81ad708dba82b1c99cf8b59b97f">HashTbl::~HashTbl</a></div><div class="ttdeci">~HashTbl()</div><div class="ttdef"><b>Definition:</b> hashtbl.inl:198</div></div>
+<div class="ttc" id="classHashTbl_html_acb5d99413eab0f528c43c01186ac7276"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#acb5d99413eab0f528c43c01186ac7276">HashTbl::m_size</a></div><div class="ttdeci">unsigned int m_size</div><div class="ttdoc">Quantidade total possível de contas. </div><div class="ttdef"><b>Definition:</b> hashtbl.h:88</div></div>
+<div class="ttc" id="HashEntry_8h_html"><div class="ttname"><a href="../../d9/d09/HashEntry_8h.html">HashEntry.h</a></div></div>
+<div class="ttc" id="classHashTbl_html_aa85eb1e9ae9c838111b71a6ca464e9a5"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#aa85eb1e9ae9c838111b71a6ca464e9a5">HashTbl::nextPrimo</a></div><div class="ttdeci">size_t nextPrimo(size_t number)</div><div class="ttdoc">Procura o próximo número primo após o valor inserido pelo usuário, ou o tamanho default da lista...</div><div class="ttdef"><b>Definition:</b> hashtbl.inl:31</div></div>
+<div class="ttc" id="classHashTbl_html_aeffa5b1a163fb6a09a18fd254a4d6dcf"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#aeffa5b1a163fb6a09a18fd254a4d6dcf">HashTbl::DEFAULT_SIZE</a></div><div class="ttdeci">static const short DEFAULT_SIZE</div><div class="ttdef"><b>Definition:</b> hashtbl.h:71</div></div>
+<div class="ttc" id="classHashTbl_html_a4b78fa6241832fc1d4d8987df0f4fabe"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#a4b78fa6241832fc1d4d8987df0f4fabe">HashTbl::print</a></div><div class="ttdeci">void print() const</div><div class="ttdef"><b>Definition:</b> hashtbl.inl:167</div></div>
+<div class="ttc" id="classHashTbl_html_af0a640cbc448ffc7a874ec3ce2a28bd2"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#af0a640cbc448ffc7a874ec3ce2a28bd2">HashTbl::empty</a></div><div class="ttdeci">bool empty(void) const</div><div class="ttdoc">Retorna true se a tabela de dispersão estiver vazia, ou false caso contrário. </div><div class="ttdef"><b>Definition:</b> hashtbl.inl:141</div></div>
+<div class="ttc" id="classHashTbl_html_a5abe7dd52a783fbfa005bcfbb6fdea3e"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#a5abe7dd52a783fbfa005bcfbb6fdea3e">HashTbl::insert</a></div><div class="ttdeci">bool insert(const KeyType &amp;k_, const DataType &amp;d_)</div><div class="ttdef"><b>Definition:</b> hashtbl.inl:45</div></div>
+<div class="ttc" id="classHashTbl_html_adbe3cac7c4109dd57627e1f87257202b"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#adbe3cac7c4109dd57627e1f87257202b">HashTbl::retrieve</a></div><div class="ttdeci">bool retrieve(const KeyType &amp;k_, DataType &amp;d_) const</div><div class="ttdef"><b>Definition:</b> hashtbl.inl:118</div></div>
+<div class="ttc" id="classHashTbl_html_a8601e6be68360a7845319a6cd32612ee"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#a8601e6be68360a7845319a6cd32612ee">HashTbl::HashTbl</a></div><div class="ttdeci">HashTbl(size_t tbl_size_=DEFAULT_SIZE)</div><div class="ttdef"><b>Definition:</b> hashtbl.inl:5</div></div>
+<div class="ttc" id="classHashTbl_html_a633936911dbdc769be2dfdae84416e5a"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#a633936911dbdc769be2dfdae84416e5a">HashTbl::clear</a></div><div class="ttdeci">void clear()</div><div class="ttdef"><b>Definition:</b> hashtbl.inl:156</div></div>
+<div class="ttc" id="classHashTbl_html_a2ecc779b66589db1ed8167fe9b81a6c9"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#a2ecc779b66589db1ed8167fe9b81a6c9">HashTbl::m_count</a></div><div class="ttdeci">unsigned int m_count</div><div class="ttdoc">Quantidade ocupada. </div><div class="ttdef"><b>Definition:</b> hashtbl.h:90</div></div>
+<div class="ttc" id="classHashTbl_html_af4bbcaeab668db62a8ca1d353377a4a4"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#af4bbcaeab668db62a8ca1d353377a4a4">HashTbl::m_data_table</a></div><div class="ttdeci">std::unique_ptr&lt; std::forward_list&lt; Entry &gt; [] &gt; m_data_table</div><div class="ttdoc">Lista dinâmica que armazena as contas (HashEntry). </div><div class="ttdef"><b>Definition:</b> hashtbl.h:92</div></div>
+<div class="ttc" id="hashtbl_8inl_html"><div class="ttname"><a href="../../dd/d15/hashtbl_8inl.html">hashtbl.inl</a></div></div>
+<div class="ttc" id="classHashTbl_html"><div class="ttname"><a href="../../d7/d76/classHashTbl.html">HashTbl</a></div><div class="ttdef"><b>Definition:</b> hashtbl.h:16</div></div>
+<div class="ttc" id="classHashTbl_html_ad5b97ce68300b96e51cc168bab5bd072"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#ad5b97ce68300b96e51cc168bab5bd072">HashTbl::count</a></div><div class="ttdeci">unsigned long int count(void) const</div><div class="ttdoc">Retorna a quantidade de elemento atualmente armazenados na tabela. </div><div class="ttdef"><b>Definition:</b> hashtbl.inl:149</div></div>
+<div class="ttc" id="classHashTbl_html_a71ce28f91782a9c92b1c87727668ba04"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#a71ce28f91782a9c92b1c87727668ba04">HashTbl::ehprimo</a></div><div class="ttdeci">bool ehprimo(size_t number)</div><div class="ttdoc">Verifica se o número x é um número primo ou não. </div><div class="ttdef"><b>Definition:</b> hashtbl.inl:21</div></div>
+<div class="ttc" id="classHashEntry_html"><div class="ttname"><a href="../../d8/d4b/classHashEntry.html">HashEntry</a></div><div class="ttdoc">Classe que armazena uma chave e um dado, o cliente não possui conhecimento sobre a existência da Hash...</div><div class="ttdef"><b>Definition:</b> HashEntry.h:6</div></div>
+<div class="ttc" id="classHashTbl_html_a7cebfea55f49e14efd80cbcb2852171e"><div class="ttname"><a href="../../d7/d76/classHashTbl.html#a7cebfea55f49e14efd80cbcb2852171e">HashTbl::rehash</a></div><div class="ttdeci">void rehash()</div><div class="ttdef"><b>Definition:</b> hashtbl.inl:185</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="../../doxygen.png" alt="doxygen"/>
+</a> 1.8.13
+</small></address>
+</body>
+</html>

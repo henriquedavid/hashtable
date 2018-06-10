@@ -1,0 +1,241 @@
+\hypertarget{classHashTbl}{}\section{Referência à classe Template Hash\+Tbl$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$}
+\label{classHashTbl}\index{Hash\+Tbl$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$@{Hash\+Tbl$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$}}
+
+
+{\ttfamily \#include $<$hashtbl.\+h$>$}
+
+\subsection*{Tipos Públicos}
+\begin{DoxyCompactItemize}
+\item 
+using \hyperlink{classHashTbl_ab9ca4e5818aa21557c7cedaf02a1e7db}{Entry} = \hyperlink{classHashEntry}{Hash\+Entry}$<$ Key\+Type, Data\+Type $>$
+\begin{DoxyCompactList}\small\item\em A\+L\+I\+AS. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Membros públicos}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classHashTbl_a8601e6be68360a7845319a6cd32612ee}{Hash\+Tbl} (size\+\_\+t tbl\+\_\+size\+\_\+=\hyperlink{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE})
+\item 
+\hyperlink{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}{$\sim$\+Hash\+Tbl} ()
+\item 
+bool \hyperlink{classHashTbl_a5abe7dd52a783fbfa005bcfbb6fdea3e}{insert} (const Key\+Type \&k\+\_\+, const Data\+Type \&d\+\_\+)
+\item 
+bool \hyperlink{classHashTbl_a8ec97ee89ffce2474fb361f974d5f291}{remove} (const Key\+Type \&k\+\_\+)
+\item 
+bool \hyperlink{classHashTbl_adbe3cac7c4109dd57627e1f87257202b}{retrieve} (const Key\+Type \&k\+\_\+, Data\+Type \&d\+\_\+) const
+\item 
+void \hyperlink{classHashTbl_a633936911dbdc769be2dfdae84416e5a}{clear} ()
+\item 
+bool \hyperlink{classHashTbl_af0a640cbc448ffc7a874ec3ce2a28bd2}{empty} (void) const
+\begin{DoxyCompactList}\small\item\em Retorna true se a tabela de dispersão estiver vazia, ou false caso contrário. \end{DoxyCompactList}\item 
+unsigned long int \hyperlink{classHashTbl_ad5b97ce68300b96e51cc168bab5bd072}{count} (void) const
+\begin{DoxyCompactList}\small\item\em Retorna a quantidade de elemento atualmente armazenados na tabela. \end{DoxyCompactList}\item 
+void \hyperlink{classHashTbl_a4b78fa6241832fc1d4d8987df0f4fabe}{print} () const
+\end{DoxyCompactItemize}
+\subsection*{Membros privados}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classHashTbl_a7cebfea55f49e14efd80cbcb2852171e}{rehash} ()
+\item 
+bool \hyperlink{classHashTbl_a71ce28f91782a9c92b1c87727668ba04}{ehprimo} (size\+\_\+t number)
+\begin{DoxyCompactList}\small\item\em Verifica se o número x é um número primo ou não. \end{DoxyCompactList}\item 
+size\+\_\+t \hyperlink{classHashTbl_aa85eb1e9ae9c838111b71a6ca464e9a5}{next\+Primo} (size\+\_\+t number)
+\begin{DoxyCompactList}\small\item\em Procura o próximo número primo após o valor inserido pelo usuário, ou o tamanho default da lista. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos Privados}
+\begin{DoxyCompactItemize}
+\item 
+unsigned int \hyperlink{classHashTbl_acb5d99413eab0f528c43c01186ac7276}{m\+\_\+size}
+\begin{DoxyCompactList}\small\item\em Quantidade total possível de contas. \end{DoxyCompactList}\item 
+unsigned int \hyperlink{classHashTbl_a2ecc779b66589db1ed8167fe9b81a6c9}{m\+\_\+count}
+\begin{DoxyCompactList}\small\item\em Quantidade ocupada. \end{DoxyCompactList}\item 
+std\+::unique\+\_\+ptr$<$ std\+::forward\+\_\+list$<$ \hyperlink{classHashTbl_ab9ca4e5818aa21557c7cedaf02a1e7db}{Entry} $>$ \mbox{[}$\,$\mbox{]} $>$ \hyperlink{classHashTbl_af4bbcaeab668db62a8ca1d353377a4a4}{m\+\_\+data\+\_\+table}
+\begin{DoxyCompactList}\small\item\em Lista dinâmica que armazena as contas (\hyperlink{classHashEntry}{Hash\+Entry}). \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Atributos Privados Estáticos}
+\begin{DoxyCompactItemize}
+\item 
+static const short \hyperlink{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE} = 11
+\end{DoxyCompactItemize}
+
+
+\subsection{Descrição detalhada}
+\subsubsection*{template$<$typename Key\+Type, typename Data\+Type, typename Key\+Hash = std\+::hash$<$ Key\+Type $>$, typename Key\+Equal = std\+::equal\+\_\+to$<$ Key\+Hash $>$$>$\newline
+class Hash\+Tbl$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$}
+
+A tabela de dispersão representada pela classe \hyperlink{classHashTbl}{Hash\+Tbl} é constituı́da por um vetor alocado dinamicamente de ponteiros para listas encadeadas de colisão. 
+
+\subsection{Documentação das definições de tipo}
+\mbox{\Hypertarget{classHashTbl_ab9ca4e5818aa21557c7cedaf02a1e7db}\label{classHashTbl_ab9ca4e5818aa21557c7cedaf02a1e7db}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!Entry@{Entry}}
+\index{Entry@{Entry}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{Entry}{Entry}}
+{\footnotesize\ttfamily template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash  = std\+::hash$<$ Key\+Type $>$, typename Key\+Equal  = std\+::equal\+\_\+to$<$ Key\+Hash $>$$>$ \\
+using \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::\hyperlink{classHashTbl_ab9ca4e5818aa21557c7cedaf02a1e7db}{Entry} =  \hyperlink{classHashEntry}{Hash\+Entry}$<$ Key\+Type, Data\+Type $>$}
+
+
+
+A\+L\+I\+AS. 
+
+
+
+\subsection{Documentação dos Construtores \& Destrutor}
+\mbox{\Hypertarget{classHashTbl_a8601e6be68360a7845319a6cd32612ee}\label{classHashTbl_a8601e6be68360a7845319a6cd32612ee}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!Hash\+Tbl@{Hash\+Tbl}}
+\index{Hash\+Tbl@{Hash\+Tbl}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{Hash\+Tbl()}{HashTbl()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+\hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::\hyperlink{classHashTbl}{Hash\+Tbl} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{tbl\+\_\+size\+\_\+ = {\ttfamily \hyperlink{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Construtor que aloca dinamicamente em $\ast$m\+\_\+data\+\_\+table um vetor cujo tamanho é determinado como sendo o menor número primo maior do que o valor especificado em tbl\+\_\+size\+\_\+ . Esta é a área de armazenamento dos dados, ou seja, cada elemento deste vetor é um ponteiro para uma lista de itens de tabela, ou \hyperlink{classHashEntry}{Hash\+Entry}.
+
+\begin{DoxyNote}{Nota}
+\+: valor padrão de argumentos e templates só são declarados no header 
+\end{DoxyNote}
+\mbox{\Hypertarget{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}\label{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!````~Hash\+Tbl@{$\sim$\+Hash\+Tbl}}
+\index{````~Hash\+Tbl@{$\sim$\+Hash\+Tbl}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{$\sim$\+Hash\+Tbl()}{~HashTbl()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+\hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::$\sim$\hyperlink{classHashTbl}{Hash\+Tbl} (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+\subsection{Documentação dos métodos}
+\mbox{\Hypertarget{classHashTbl_a633936911dbdc769be2dfdae84416e5a}\label{classHashTbl_a633936911dbdc769be2dfdae84416e5a}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!clear@{clear}}
+\index{clear@{clear}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{clear()}{clear()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+void \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::clear (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Libera toda a memória associada às listas de colisão da tabela, removendo todos seus elementos. Note que a memória dinâmica associada ao ponteiro m\+\_\+data\+\_\+table não deve ser liberada neste momento, mas apenas no destruidor da classe. \mbox{\Hypertarget{classHashTbl_ad5b97ce68300b96e51cc168bab5bd072}\label{classHashTbl_ad5b97ce68300b96e51cc168bab5bd072}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!count@{count}}
+\index{count@{count}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{count()}{count()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+unsigned long int \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::count (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retorna a quantidade de elemento atualmente armazenados na tabela. 
+
+\mbox{\Hypertarget{classHashTbl_a71ce28f91782a9c92b1c87727668ba04}\label{classHashTbl_a71ce28f91782a9c92b1c87727668ba04}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!ehprimo@{ehprimo}}
+\index{ehprimo@{ehprimo}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{ehprimo()}{ehprimo()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+bool \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::ehprimo (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Verifica se o número x é um número primo ou não. 
+
+\begin{DoxyNote}{Nota}
+\+: para checar se eh primo, se verificar se o resto da divisao de x com algum c dentro do intervalo \mbox{[}2, x-\/1\mbox{]} eh 0. 
+\end{DoxyNote}
+\mbox{\Hypertarget{classHashTbl_af0a640cbc448ffc7a874ec3ce2a28bd2}\label{classHashTbl_af0a640cbc448ffc7a874ec3ce2a28bd2}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!empty@{empty}}
+\index{empty@{empty}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{empty()}{empty()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+bool \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::empty (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Retorna true se a tabela de dispersão estiver vazia, ou false caso contrário. 
+
+\mbox{\Hypertarget{classHashTbl_a5abe7dd52a783fbfa005bcfbb6fdea3e}\label{classHashTbl_a5abe7dd52a783fbfa005bcfbb6fdea3e}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!insert@{insert}}
+\index{insert@{insert}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{insert()}{insert()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+bool \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::insert (\begin{DoxyParamCaption}\item[{const Key\+Type \&}]{k\+\_\+,  }\item[{const Data\+Type \&}]{d\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Insere na tabela a informação contida em d\+\_\+ e associada a uma chave k\+\_\+ . A classe calcula o endereço end que a informação d\+\_\+ deve ocupar na tabela e o armazena na lista de colisão correspondente, ou seja, em m\+\_\+data\+\_\+table\mbox{[}end\mbox{]} . Se a inserção foi realizada com sucesso a função retorna true . Se a chave já existir na tabela, o método sobrescreve os dados da tabela com os dados contidos em d\+\_\+ e retorna false , para diferençar de uma inserção realizada pela primeira vez. \mbox{\Hypertarget{classHashTbl_aa85eb1e9ae9c838111b71a6ca464e9a5}\label{classHashTbl_aa85eb1e9ae9c838111b71a6ca464e9a5}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!next\+Primo@{next\+Primo}}
+\index{next\+Primo@{next\+Primo}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{next\+Primo()}{nextPrimo()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+size\+\_\+t \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::next\+Primo (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{number }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+
+
+Procura o próximo número primo após o valor inserido pelo usuário, ou o tamanho default da lista. 
+
+\begin{DoxyNote}{Nota}
+\+: o tamanho passado pode já ser primo, ou seja o cliente já irá ficar satisfeito com o tamanho 
+\end{DoxyNote}
+\mbox{\Hypertarget{classHashTbl_a4b78fa6241832fc1d4d8987df0f4fabe}\label{classHashTbl_a4b78fa6241832fc1d4d8987df0f4fabe}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!print@{print}}
+\index{print@{print}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{print()}{print()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+void \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::print (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+É um método de depuração usado apenas para gerar uma representação textual da tabela e seus elementos. É um método útil na fase de desenvolvimento da classe para verificar se as operações sobre a tabela estão funcionando corretamente. \mbox{\Hypertarget{classHashTbl_a7cebfea55f49e14efd80cbcb2852171e}\label{classHashTbl_a7cebfea55f49e14efd80cbcb2852171e}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!rehash@{rehash}}
+\index{rehash@{rehash}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{rehash()}{rehash()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+void \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::rehash (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [private]}}
+
+É um método privado que deve ser chamado quando o fator de carga λ for maior que 1.\+0. O fator de carga é a razão entre o número de elementos na tabela e seu tamanho. Este método vai criar uma nova tabela cujo tamanho será igual ao menor número primo maior que o dobro do tamanho da tabela antes da chamada \hyperlink{classHashTbl_a7cebfea55f49e14efd80cbcb2852171e}{rehash()} . Após a criação da nova tabela, todos os elementos devem ser inseridos na nova tabela, de acordo com uma nova função de dispersão secundária, baseada no novo tamanho da tabela. Cuidado especial deve ser tomado para evitar vazamento de memória. O cliente não deve perceber que esta operação foi acionada. \mbox{\Hypertarget{classHashTbl_a8ec97ee89ffce2474fb361f974d5f291}\label{classHashTbl_a8ec97ee89ffce2474fb361f974d5f291}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!remove@{remove}}
+\index{remove@{remove}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{remove()}{remove()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+bool \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::remove (\begin{DoxyParamCaption}\item[{const Key\+Type \&}]{k\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Remove um item de tabela identificado por sua chave k\+\_\+ . Se a chave for encontrada o método retorna true , caso contrário false. \mbox{\Hypertarget{classHashTbl_adbe3cac7c4109dd57627e1f87257202b}\label{classHashTbl_adbe3cac7c4109dd57627e1f87257202b}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!retrieve@{retrieve}}
+\index{retrieve@{retrieve}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{retrieve()}{retrieve()}}
+{\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
+bool \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::retrieve (\begin{DoxyParamCaption}\item[{const Key\+Type \&}]{k\+\_\+,  }\item[{Data\+Type \&}]{d\+\_\+ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+Recupera em d\+\_\+ a informação associada a chave k\+\_\+ passada como argumento para o método. Se a chave for encontrada o método retorna true , caso contrário false. 
+
+\subsection{Documentação dos dados membro}
+\mbox{\Hypertarget{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}\label{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE@{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE}}
+\index{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE@{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE}{DEFAULT\_SIZE}}
+{\footnotesize\ttfamily template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash  = std\+::hash$<$ Key\+Type $>$, typename Key\+Equal  = std\+::equal\+\_\+to$<$ Key\+Hash $>$$>$ \\
+const short \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE = 11\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+\mbox{\Hypertarget{classHashTbl_a2ecc779b66589db1ed8167fe9b81a6c9}\label{classHashTbl_a2ecc779b66589db1ed8167fe9b81a6c9}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!m\+\_\+count@{m\+\_\+count}}
+\index{m\+\_\+count@{m\+\_\+count}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{m\+\_\+count}{m\_count}}
+{\footnotesize\ttfamily template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash  = std\+::hash$<$ Key\+Type $>$, typename Key\+Equal  = std\+::equal\+\_\+to$<$ Key\+Hash $>$$>$ \\
+unsigned int \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::m\+\_\+count\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Quantidade ocupada. 
+
+\mbox{\Hypertarget{classHashTbl_af4bbcaeab668db62a8ca1d353377a4a4}\label{classHashTbl_af4bbcaeab668db62a8ca1d353377a4a4}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!m\+\_\+data\+\_\+table@{m\+\_\+data\+\_\+table}}
+\index{m\+\_\+data\+\_\+table@{m\+\_\+data\+\_\+table}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{m\+\_\+data\+\_\+table}{m\_data\_table}}
+{\footnotesize\ttfamily template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash  = std\+::hash$<$ Key\+Type $>$, typename Key\+Equal  = std\+::equal\+\_\+to$<$ Key\+Hash $>$$>$ \\
+std\+::unique\+\_\+ptr$<$std\+::forward\+\_\+list$<$ \hyperlink{classHashTbl_ab9ca4e5818aa21557c7cedaf02a1e7db}{Entry} $>$ \mbox{[}$\,$\mbox{]} $>$ \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::m\+\_\+data\+\_\+table\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Lista dinâmica que armazena as contas (\hyperlink{classHashEntry}{Hash\+Entry}). 
+
+\mbox{\Hypertarget{classHashTbl_acb5d99413eab0f528c43c01186ac7276}\label{classHashTbl_acb5d99413eab0f528c43c01186ac7276}} 
+\index{Hash\+Tbl@{Hash\+Tbl}!m\+\_\+size@{m\+\_\+size}}
+\index{m\+\_\+size@{m\+\_\+size}!Hash\+Tbl@{Hash\+Tbl}}
+\subsubsection{\texorpdfstring{m\+\_\+size}{m\_size}}
+{\footnotesize\ttfamily template$<$typename Key\+Type , typename Data\+Type , typename Key\+Hash  = std\+::hash$<$ Key\+Type $>$, typename Key\+Equal  = std\+::equal\+\_\+to$<$ Key\+Hash $>$$>$ \\
+unsigned int \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::m\+\_\+size\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Quantidade total possível de contas. 
+
+
+
+A documentação para esta classe foi gerada a partir dos seguintes ficheiros\+:\begin{DoxyCompactItemize}
+\item 
+include/\hyperlink{hashtbl_8h}{hashtbl.\+h}\item 
+include/\hyperlink{hashtbl_8inl}{hashtbl.\+inl}\end{DoxyCompactItemize}

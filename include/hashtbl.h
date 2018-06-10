@@ -5,7 +5,7 @@
 #include <forward_list>
 #include "HashEntry.h"
 
-/** 
+/*! 
  * A tabela de dispersão representada pela classe HashTbl é constituı́da por um vetor alocado
  * dinamicamente de ponteiros para listas encadeadas de colisão.
  */
@@ -19,7 +19,7 @@ public:
 	/// ALIAS
 	using Entry = HashEntry< KeyType, DataType >;
 
-	/**
+	/*!
 	 * Construtor que aloca dinamicamente em *m_data_table um
      * vetor cujo tamanho é determinado como sendo o menor número primo maior do que o valor
 	 * especificado em tbl_size_ . Esta é a área de armazenamento dos dados, ou seja, cada
@@ -27,7 +27,7 @@ public:
 	 */
 	HashTbl ( size_t tbl_size_ = DEFAULT_SIZE );
     ~HashTbl();
-	/**
+	/*!
 	 * Insere na tabela a informação contida em d_ e associada a uma chave k_ .
 	 * A classe calcula o endereço end que a informação d_ deve ocupar na tabela e o armazena na
 	 * lista de colisão correspondente, ou seja, em m_data_table[end] . Se a inserção foi realizada
@@ -36,19 +36,19 @@ public:
 	 * inserção realizada pela primeira vez.
 	 */
 	bool insert( const KeyType & k_, const DataType & d_ );
-	/**
+	/*!
 	 * Remove um item de tabela identificado por sua chave k_ .
 	 * Se a chave for encontrada o método retorna true , caso contrário false.
 	 */
 	bool remove( const KeyType & k_ );
-	/**
+	/*!
 	 * Recupera em d_ a informação associada a chave k_ passada como argumento para o método.
 	 * Se a chave for encontrada o método retorna true , caso contrário
 	 * false.
 	 */
 	bool retrieve( const KeyType & k_, DataType & d_ ) const;
 
-	/**
+	/*!
 	 * Libera toda a memória associada às listas de colisão da tabela, removendo todos
 	 * seus elementos. Note que a memória dinâmica associada ao ponteiro m_data_table não
 	 * deve ser liberada neste momento, mas apenas no destruidor da classe.
@@ -60,7 +60,7 @@ public:
 	/// Retorna a quantidade de elemento atualmente armazenados na tabela.
 	unsigned long int count( void ) const;
 
-	/**
+	/*!
 	 * É um método de depuração usado apenas para gerar uma representação textual da
 	 * tabela e seus elementos. É um método útil na fase de desenvolvimento da classe para verificar
 	 * se as operações sobre a tabela estão funcionando corretamente.
@@ -69,7 +69,7 @@ public:
 
 private:
 	static const short DEFAULT_SIZE = 11;
-	/**
+	/*!
 	 * É um método privado que deve ser chamado quando o fator de carga λ for maior
 	 * que 1.0. O fator de carga é a razão entre o número de elementos na tabela e seu tamanho.
 	 * Este método vai criar uma nova tabela cujo tamanho será igual ao menor número primo maior

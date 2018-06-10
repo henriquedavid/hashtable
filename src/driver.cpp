@@ -10,8 +10,9 @@
 int main( void )
 {
 
-//    HashTbl<Account::AcctKey, Account>;
-
+    HashTbl<int, App::Account> ht(10);
+    App::Account acc1(0, "Pablo", 122, 33232, 21323, 0.0);
+//    ht.insert(0, acc1);
 	// Versão 1
 	{	
 

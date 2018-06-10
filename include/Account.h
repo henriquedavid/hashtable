@@ -12,7 +12,7 @@ namespace App {
         int conta_;
         float saldo_;
 
-        Account( size_t id_, std::string nome, int banco, int agencia, int conta, float saldo){
+        Account( int id_, std::string nome, int banco, int agencia, int conta, float saldo){
             id = id_;
             nome_ = nome;
             banco_ = banco;

@@ -8,7 +8,8 @@ inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::HashTbl( size_t tbl_size_){
 
 	m_size = tbl_size_;
 	m_count = 0;
-	m_data_table = new std::forward_list< Entry > [tbl_size_];
+    using Entry = HashEntry< KeyType, DataType >;
+    m_data_table = std::unique_ptr<std::forward_list< Entry > [] > (new std::forward_list< Entry > [tbl_size_]);
 }
 
 
@@ -143,4 +144,8 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::rehash(){
 
 }
 
+template < class KeyType, class DataType, class KeyHash, class KeyEqual >
+inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::~HashTbl(){
+
+}
 

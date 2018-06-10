@@ -21,7 +21,7 @@ public:
 	 * elemento deste vetor é um ponteiro para uma lista de itens de tabela, ou HashEntry.
 	 */
 	HashTbl ( size_t tbl_size_ = DEFAULT_SIZE );
-	virtual ~HashTbl();
+    ~HashTbl();
 	/**
 	 * Insere na tabela a informação contida em d_ e associada a uma chave k_ .
 	 * A classe calcula o endereço end que a informação d_ deve ocupar na tabela e o armazena na
@@ -81,7 +81,7 @@ private:
     size_t nextPrimo(size_t number);
 	unsigned int m_size;
 	unsigned int m_count;
-	std::unique_ptr<std::forward_list< Entry > [] > * m_data_table;	// <-- Aqui seria no caso só isso ou tem que criar um outro ponteiro.
+    std::unique_ptr<std::forward_list< Entry > [] > m_data_table;	// <-- Aqui seria no caso só isso ou tem que criar um outro ponteiro.
 };
 
 #include "hashtbl.inl"

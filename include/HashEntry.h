@@ -1,4 +1,7 @@
-template < class KeyType, class DataType >
+template < typename KeyType,
+           typename DataType,
+           typename KeyHash = std::hash< KeyType >,
+           typename KeyEqual = std::equal_to< KeyHash > >
 class HashEntry
 {
 public:

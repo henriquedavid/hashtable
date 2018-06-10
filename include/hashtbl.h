@@ -1,6 +1,11 @@
 #ifndef HASH_TBL
 #define HASH_TBL
 
+#include <memory>
+#include <forward_list>
+
+#include "HashEntry.h"
+
 template < typename KeyType,
 		   typename DataType,
 		   typename KeyHash = std::hash< KeyType >,
@@ -72,9 +77,9 @@ private:
 	 */
 	void rehash();
 	/// Verifica se o número x é um número primo ou não.
-	bool ehprimo();
+    bool ehprimo(size_t number);
 	/// Procura o próximo número primo após o valor inserido pelo usuário, ou o tamanho default da lista.
-	bool nextPrimo();
+    size_t nextPrimo(size_t number);
 	unsigned int m_size;
 	unsigned int m_count;
 	std::unique_ptr<std::forward_list< Entry > [] > * m_data_table;	// <-- Aqui seria no caso só isso ou tem que criar um outro ponteiro.

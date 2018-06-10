@@ -9,7 +9,8 @@ struct Account{
 	int conta_; 
 	float saldo_;
 
-	Account( size_t id, std::string nome, int banco, int agencia, int conta, float saldo){
+    Account( size_t id_, std::string nome, int banco, int agencia, int conta, float saldo){
+        id = id_;
 		nome_ = nome;
 		banco_ = banco;
 		agencia_ = agencia;

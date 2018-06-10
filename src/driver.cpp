@@ -4,9 +4,9 @@
 #include <functional>
 
 #include "../include/Account.h"
-#include "../include/HashEntry.h"
 #include "../include/hashtbl.h"
 
+/// \note: Hash entry é desconhecido para o cliente
 int main( void )
 {
 

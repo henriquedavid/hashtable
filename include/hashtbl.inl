@@ -68,6 +68,27 @@ inline bool HashTbl<KeyType,DataType, KeyHash, KeyEqual>::insert(const KeyType &
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline bool HashTbl<KeyType, DataType, KeyHash, KeyEqual>::remove(const  KeyType & k_)
 {
+    KeyHash hf;
+    KeyEqual equal;
+    size_t id = hf(k_) % m_size;
+
+    auto& list = m_data_table[id];
+
+
+
+    auto before(list.before_begin());
+    auto begin(list.begin());
+    auto end(list.end());
+    while(begin != end)
+    {
+        if(equal(begin->m_key, k_))
+        {
+            list.erase_after(before);
+            return true;
+        }
+        ++before;
+        ++begin;
+    }
     return false;
 }
 

@@ -13,6 +13,9 @@ int main( void )
 
     // Versão 1
     {
+
+        std::cout << "VERSÃO 01\n" << std::endl;
+
     	// Cria a tabela
         HashTbl<int, App::Account, App::KeyHash<int>, App::KeyEqual<int>> ht(10);
         // Cria uma conta.
@@ -40,6 +43,9 @@ int main( void )
 
     // Versão 2
     {
+
+        std::cout << "\n\n\nVERSÃO 02\n" << std::endl;
+
     	// Cria uma nova tabela na qual a chave é o nome do cliente e o número da conta.
         HashTbl<std::pair<std::string, int>, App::Account, App::KeyHash<std::pair<std::string, int>>,
                 App::KeyEqual<std::pair<std::string, int>>> ht(10);
@@ -73,6 +79,7 @@ int main( void )
 
     // Versão 3
     {
+        std::cout << "\n\n\nVERSÃO 03\n" << std::endl;
         using KeyType = std::tuple<std::string, int, int, int>;
     	// Cria uma nova tabela para armazenar uma hash table com chave sendo o nome do cliente, o banco, a agencia e a conta.
         HashTbl<KeyType, App::Account, App::KeyHash<KeyType>, App::KeyEqual<KeyType>> ht(3);

@@ -5,6 +5,10 @@
 #include <forward_list>
 #include "HashEntry.h"
 
+/** 
+ * A tabela de dispersão representada pela classe HashTbl é constituı́da por um vetor alocado
+ * dinamicamente de ponteiros para listas encadeadas de colisão.
+ */
 template < typename KeyType,
 		   typename DataType,
 		   typename KeyHash = std::hash< KeyType >,
@@ -12,6 +16,7 @@ template < typename KeyType,
 class HashTbl{
 public:
 
+	/// ALIAS
 	using Entry = HashEntry< KeyType, DataType >;
 
 	/**
@@ -79,9 +84,12 @@ private:
     bool ehprimo(size_t number);
 	/// Procura o próximo número primo após o valor inserido pelo usuário, ou o tamanho default da lista.
     size_t nextPrimo(size_t number);
+    /// Quantidade total possível de contas.
 	unsigned int m_size;
+	/// Quantidade ocupada.
 	unsigned int m_count;
-    std::unique_ptr<std::forward_list< Entry > [] > m_data_table;	// <-- Aqui seria no caso só isso ou tem que criar um outro ponteiro.
+	/// Lista dinâmica que armazena as contas (HashEntry).
+    std::unique_ptr<std::forward_list< Entry > [] > m_data_table;
 };
 
 #include "hashtbl.inl"

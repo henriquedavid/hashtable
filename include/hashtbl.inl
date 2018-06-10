@@ -95,6 +95,21 @@ inline bool HashTbl<KeyType, DataType, KeyHash, KeyEqual>::remove(const  KeyType
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline bool HashTbl<KeyType, DataType, KeyHash, KeyEqual>::retrieve( const KeyType & k_, DataType & d_ ) const{
+
+    KeyHash hf;
+    KeyEqual equal;
+    size_t id = hf(k_) % m_size;
+
+    // Procura o elemento
+    auto & list = m_data_table[id];
+    for(auto & element : list)
+    {
+        if(equal(k_, element.m_key)){
+            d_ = element.m_data;
+            return true;
+        }
+    }
+
     return false;
 }
 

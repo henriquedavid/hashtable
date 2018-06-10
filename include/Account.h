@@ -12,6 +12,8 @@ namespace App {
         int conta_;
         float saldo_;
 
+        Account(){/*empty*/}
+
         Account( int id_, std::string nome, int banco, int agencia, int conta, float saldo){
             id = id_;
             nome_ = nome;
@@ -23,6 +25,20 @@ namespace App {
 
         int get_key(){
             return id;
+        }
+
+        void print(){
+            std::cout << " - CONTA - \n| ID = " << id ;
+            std::cout << " | NOME = " << nome_ << " | BANCO = " << banco_ << " | AGÊNCIA = " << agencia_ << " | CONTA = " << conta_ << " | SALDO = " << saldo_ << " | " << std::endl;
+        }
+
+        void operator=( Account & ac ){
+            this->id = ac.id;
+            this->nome_ = ac.nome_;
+            this->banco_ = ac.banco_;
+            this->agencia_ = ac.agencia_;
+            this->conta_ = ac.conta_;
+            this->saldo_ = ac.saldo_;
         }
     };
 

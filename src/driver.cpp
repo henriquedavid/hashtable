@@ -3,12 +3,14 @@
 #include <forward_list>
 #include <functional>
 
-#include "../include/Account.h"
-#include "../include/hashtbl.h"
+#include "Account.h"
+#include "hashtbl.h"
 
 /// \note: Hash entry é desconhecido para o cliente
 int main( void )
 {
+
+//    HashTbl<Account::AcctKey, Account>;
 
 	// Versão 1
 	{	

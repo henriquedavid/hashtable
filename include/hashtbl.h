@@ -3,7 +3,6 @@
 
 #include <memory>
 #include <forward_list>
-
 #include "HashEntry.h"
 
 template < typename KeyType,
@@ -83,16 +82,6 @@ private:
 	unsigned int m_size;
 	unsigned int m_count;
 	std::unique_ptr<std::forward_list< Entry > [] > * m_data_table;	// <-- Aqui seria no caso só isso ou tem que criar um outro ponteiro.
-};
-
-struct KeyHash {
-
-	std::size_t operator()(const Account::AcctKey & k_) const;
-
-};
-
-struct KeyEqual{
-	bool operator()(const Account::AcctKey & lhs_, const Account::AcctKey & rhs_) const;
 };
 
 #include "hashtbl.inl"

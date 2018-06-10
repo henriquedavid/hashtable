@@ -113,15 +113,13 @@ inline unsigned long int HashTbl<KeyType,DataType, KeyHash, KeyEqual>::count( vo
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::clear(){
-	// Apaga o conteúdo de cada lista interna.
-	for( auto & i : m_data_table ){
-		i.clear();
-	}
-	// Apaga a tabela em si
-	delete [] this->m_data_table;
-	// Declara a tabela vazia.
-	this->m_data_table = new std::forward_list< Entry > [m_size];
-	this->count = 0;
+
+    for(uint i = 0; i < m_size; ++i)
+    {
+        auto& list = m_data_table[i];
+        list.clear();
+    }
+    delete [] m_data_table;
 }
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
@@ -131,7 +129,7 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::print() const{
     {
         std::cout << "--- linha " << i << " ---\n";
         std::cout << "[ ";
-        auto list = m_data_table[i];
+        auto& list = m_data_table[i];
         for(auto & element : list )
         {
             std::cout << element.m_key << " ";
@@ -143,11 +141,21 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::print() const{
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::rehash(){
+    using Entry = HashEntry< KeyType, DataType >;
+    std::forward_list<Entry>* new_data_table = new std::forward_list<Entry>[nextPrimo(m_size*2)];
 
+    for(uint i = 0; i < m_size; ++i)
+    {
+        auto& list = m_data_table[i];
+        new_data_table[i] = list;
+    }
+    m_data_table.reset(new_data_table);
 }
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::~HashTbl(){
-
+    m_data_table.release();
+    m_count = 0;
+    m_size = 0;
 }
 

@@ -1,7 +1,10 @@
 #ifndef HASH_TBL
 #define HASH_TBL
 
-template < typename KeyType, typename DataType >	
+template < typename KeyType,
+		   typename DataType,
+		   typename KeyHash = std::hash< KeyType >,
+		   typename KeyEqual = std::equal_to<KeyHash> >	
 class HashTbl{
 public:
 
@@ -26,6 +29,16 @@ private:
 	std::unique_ptr<std::forward_list< Entry > [] > * m_data_table;	// <-- Aqui seria no caso só isso ou tem que criar um outro ponteiro.
 }
 
-#include "hashtbl.cpp"
+struct KeyHash {
+
+	std::size_t operator()(const Account::AcctKey & k_) const;
+
+};
+
+struct KeyEqual{
+	bool operator()(const Account::AcctKey & lhs_, const Account::AcctKey & rhs_) const;
+};
+
+#include "hashtbl.inl"
 
 #endif

@@ -2,8 +2,8 @@
 vetor cujo tamanho é determinado como sendo o menor número primo maior do que o valor
 especificado em tbl_size_ . Esta é a área de armazenamento dos dados, ou seja, cada
 elemento deste vetor é um ponteiro para uma lista de itens de tabela, ou HashEntry .*/
-template < typename KeyType, typename DataType >
-HashTabl<KeyType,DataType>::HashTbl( size_t tbl_size_ = DEFAULT_SIZE ){
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+HashTabl<KeyType,DataType, KeyHash, KeyEqual>::HashTbl( size_t tbl_size_ = DEFAULT_SIZE ){
 	if(tbl_size_ != DEFAULT_SIZE)
 		tbl_size_ = nextPrimo(tbl_size_);
 
@@ -13,7 +13,8 @@ HashTabl<KeyType,DataType>::HashTbl( size_t tbl_size_ = DEFAULT_SIZE ){
 }
 
 /* Verifica se o número x é um número primo ou não.*/
-bool HashTabl<KeyType,DataType>::ehprimo(size_t x){
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+bool HashTabl<KeyType,DataType, KeyHash, KeyEqual>::ehprimo(size_t x){
 	size_t count = 0;
 	size_t numeracao = 1;
 	while(numeracao != x){
@@ -29,7 +30,8 @@ bool HashTabl<KeyType,DataType>::ehprimo(size_t x){
 }
 
 /* Procura o próximo número primo após o valor inserido pelo usuário, ou o tamanho default da lista.*/
-size_t HashTabl<KeyType,DataType>::nextPrimo(size_t x){
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+size_t HashTabl<KeyType,DataType, KeyHash, KeyEqual>::nextPrimo(size_t x){
 	size_t nextPri = x+1;
  
 	while(!ehprimo(nextPri))
@@ -44,8 +46,8 @@ lista de colisão correspondente, ou seja, em m_data_table[end] . Se a inserçã
 com sucesso a função retorna true . Se a chave já existir na tabela, o método sobrescreve
 os dados da tabela com os dados contidos em d_ e retorna false , para diferençar de uma
 inserção realizada pela primeira vez.*/
-template < typename KeyType, typename DataType >
-bool HashTabl<KeyType,DataType>::insert(const KeyType & k_, const DataType & d_)
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+bool HashTabl<KeyType,DataType, KeyHash, KeyEqual>::insert(const KeyType & k_, const DataType & d_)
 {
 
 	/*Verificar se possui espaço suficiente,
@@ -97,8 +99,8 @@ bool HashTabl<KeyType,DataType>::insert(const KeyType & k_, const DataType & d_)
 
 /*Remove um item de tabela identificado por sua chave k_ .
 Se a chave for encontrada o método retorna true , caso contrário false .*/
-template < typename KeyType, typename DataType >
-bool HashTabl<KeyType, DataType>::remove(const  KeyType & k_)
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+bool HashTabl<KeyType, DataType, KeyHash, KeyEqual>::remove(const  KeyType & k_)
 {
 
 }
@@ -106,22 +108,22 @@ bool HashTabl<KeyType, DataType>::remove(const  KeyType & k_)
 /*Recupera em d_ a informação associada a chave k_ passada como ar-
 gumento para o método. Se a chave for encontrada o método retorna true , caso contrário
 false .*/
-template < typename KeyType, typename DataType >
-bool HashTabl<KeyType, DataType>::retrieve( const KeyType & k_, DataType & d_ ) const{
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+bool HashTabl<KeyType, DataType, KeyHash, KeyEqual>::retrieve( const KeyType & k_, DataType & d_ ) const{
 
 }
 
 /*Retorna true se a tabela de dispersão estiver vazia, ou false caso contrário.*/
-template < typename KeyType, typename DataType >
-bool HashTabl<KeyType,DataType>::empty( void ) const{
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+bool HashTabl<KeyType,DataType, KeyHash, KeyEqual>::empty( void ) const{
 	if( m_count == 0 )
 		return true;
 	return false;
 }
 
 /*Retorna a quantidade de elemento atualmente armazenados na tabela.*/
-template < typename KeyType, typename DataType >
-unsigned long int HashTabl<KeyType,DataType>::count( void ) const{
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+unsigned long int HashTabl<KeyType,DataType, KeyHash, KeyEqual>::count( void ) const{
 	if(m_count == 0)
 		return true;
 	return false;
@@ -130,8 +132,8 @@ unsigned long int HashTabl<KeyType,DataType>::count( void ) const{
 /*Libera toda a memória associada às listas de colisão da tabela, removendo todos
 seus elementos. Note que a memória dinâmica associada ao ponteiro m_data_table não
 deve ser liberada neste momento, mas apenas no destruidor da classe.*/
-template < typename KeyType, typename DataType >
-void HashTabl<KeyType,DataType>::clear(){
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+void HashTabl<KeyType,DataType, KeyHash, KeyEqual>::clear(){
 	// Apaga o conteúdo de cada lista interna.
 	for( auto & i : m_data_table ){
 		i.clear();
@@ -146,8 +148,8 @@ void HashTabl<KeyType,DataType>::clear(){
 /*É um método de depuração usado apenas para gerar uma representação textual da
 tabela e seus elementos. É um método útil na fase de desenvolvimento da classe para verificar
 se as operações sobre a tabela estão funcionando corretamente.*/
-template < typename KeyType, typename DataType >
-void HashTabl<KeyType,DataType>::print() const{
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+void HashTabl<KeyType,DataType, KeyHash, KeyEqual>::print() const{
 	std::cout << "--- HASHTABLE --- \n";
 
 	// Percorre a tabela.
@@ -165,7 +167,19 @@ tabela, todos os elementos devem ser inseridos na nova tabela, de acordo com uma
 função de dispersão secundária, baseada no novo tamanho da tabela. Cuidado especial deve
 ser tomado para evitar vazamento de memória. O cliente não deve perceber que esta operação
 foi acionada.*/
-template < typename KeyType, typename DataType >
-void HashTabl<KeyType,DataType>::rehash(){
+template < typename KeyType, typename DataType, class KeyHash, class KeyEqual >
+void HashTabl<KeyType,DataType, KeyHash, KeyEqual>::rehash(){
 
 }
+
+std::size_t KeyHash::operator()(const Account::AcctKey & k_) const{
+	return std::hash<int>(k_);
+	// return std::hash<std::string>()(k_.first)) xor
+	//		  std::hash<int>()(k_.second); <- Versão 2
+}
+
+bool KeyEqual::operator()(const Account::AcctKey & lhs_, const Account::AcctKey & rhs_) const{
+	return lhs_ == rhs_;
+	// lhs_.first == rhs_.first and lhs_.second == rhs_.second;
+}
+

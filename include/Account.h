@@ -30,6 +30,9 @@ namespace App {
     template <class AcctKey>
     struct KeyHash;
 
+    template <class AcctKey>
+    struct KeyEqual;
+
     template <>
     struct KeyHash<int>
     {
@@ -68,6 +71,17 @@ namespace App {
         }
 
     };
+
+    template <>
+    struct KeyEqual<int>
+    {
+        using AcctKey = int;
+        bool operator()(const AcctKey& lhs_, const AcctKey& rhs_)
+        {
+            return lhs_ == rhs_ ;
+        }
+    };
+
 }
 
 

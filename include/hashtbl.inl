@@ -46,42 +46,21 @@ inline bool HashTbl<KeyType,DataType, KeyHash, KeyEqual>::insert(const KeyType &
 	procurar se na chave já possui algum elemento,
 	se possuir inserir na frente da lista encadeada,
 	se não basta inserir o elemento na lista.*/
+    if(m_count / m_size >= 1.0)
+        rehash();
 
-	// Verifica se possui espaço suficiente.
-	if( m_count >= m_size){
-		auto last(m_data_table);
-		m_size = nextPrimo(m_size*2);
-		std::unique_ptr<std::forward_list< Entry > [] > * new_data_table = new std::forward_list<Entry>[m_size];
-
-		for( auto & i : m_data_table )
-		{
-			new_data_table.push_front(i);
-		}
-
-		delete [] m_data_table;
-		m_data_table = new_data_table;
-	}
-
-	bool possui_elemento = false;
+    KeyHash hf;
+    KeyEqual equal;
+    size_t id = hf(k_) % m_size;
 
 	// Verifica se já possui algum elemento na chave;
-	for( auto & i : m_data_table ){
-		if( i.key == k_ ){
-			for( auto & j : i ){
-				if( j.d_ == d_)
-					possui_elemento == true;
-			}
-			if(!possui_elemento)
-			{
-                i.push_front(new HashEntry<KeyType,DataType,KeyHash,KeyEqual>(k_, d_));
-				++m_count;
-				return true;
-			}
-
-		}
-	}
-
-    m_data_table.push_front(new HashEntry<KeyType,DataType,KeyHash,KeyEqual>(k_, d_));
+    auto list = m_data_table[id];
+    for(auto & element : list)
+    {
+        if(equal(k_, element.m_key))
+            return false;
+    }
+    list.push_front(Entry(k_, d_));
 	++m_count;
 	return false;
 

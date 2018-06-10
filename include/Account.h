@@ -27,11 +27,6 @@ namespace App {
             return id;
         }
 
-        void print(){
-            std::cout << " - CONTA - \n| ID = " << id ;
-            std::cout << " | NOME = " << nome_ << " | BANCO = " << banco_ << " | AGÊNCIA = " << agencia_ << " | CONTA = " << conta_ << " | SALDO = " << saldo_ << " | " << std::endl;
-        }
-
         void operator=( Account & ac ){
             this->id = ac.id;
             this->nome_ = ac.nome_;
@@ -41,7 +36,12 @@ namespace App {
             this->saldo_ = ac.saldo_;
         }
     };
-
+    std::ostream& operator<<(std::ostream & os, const Account& rhs){
+        os << " - CONTA - | ID = " << rhs.id ;
+        os << " | NOME = " << rhs.nome_ << " | BANCO = " << rhs.banco_ << " | AGÊNCIA = " << rhs.agencia_ <<
+              " | CONTA = " << rhs.conta_ << " | SALDO = " << rhs.saldo_ << " | ";
+        return os;
+    }
 
     template <class AcctKey>
     struct KeyHash;
@@ -92,6 +92,26 @@ namespace App {
     struct KeyEqual<int>
     {
         using AcctKey = int;
+        bool operator()(const AcctKey& lhs_, const AcctKey& rhs_)
+        {
+            return lhs_ == rhs_ ;
+        }
+    };
+
+    template <>
+    struct KeyEqual<std::pair<std::string, int>>
+    {
+        using AcctKey = std::pair<std::string, int>;
+        bool operator()(const AcctKey& lhs_, const AcctKey& rhs_)
+        {
+            return lhs_ == rhs_ ;
+        }
+    };
+
+    template <>
+    struct KeyEqual<std::tuple<std::string, int, int, int>>
+    {
+        using AcctKey = std::tuple<std::string, int, int, int>;
         bool operator()(const AcctKey& lhs_, const AcctKey& rhs_)
         {
             return lhs_ == rhs_ ;

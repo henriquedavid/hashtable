@@ -143,13 +143,13 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::print() const{
     for(uint i = 0; i < m_size; ++i)
     {
         std::cout << "--- linha " << i << " ---\n";
-        std::cout << "[ ";
+        std::cout << "{\n";
         auto& list = m_data_table[i];
         for(auto & element : list )
         {
-            std::cout << element.m_key << " ";
+            std::cout << element.m_data << "\n";
         }
-        std::cout << "]\n";
+        std::cout << "}\n";
     }
 }
 

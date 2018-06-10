@@ -10,12 +10,13 @@
 int main( void )
 {
 
-    HashTbl<int, App::Account, App::KeyHash<int>, App::KeyEqual<int>> ht(10);
-    App::Account acc1(0, "Pablo", 122, 33232, 21323, 0.0);
-    ht.insert(0, acc1);
+
 	// Versão 1
 	{	
-
+        HashTbl<int, App::Account, std::hash<int>, App::KeyEqual<int>> ht(10);
+        App::Account acc1(0, "Pablo", 122, 332532, 214323, 0.0);
+        ht.insert(0, acc1);
+        ht.print();
 	}	
 
 	// Versão 2

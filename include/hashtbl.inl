@@ -52,9 +52,8 @@ inline bool HashTbl<KeyType,DataType, KeyHash, KeyEqual>::insert(const KeyType &
     KeyHash hf;
     KeyEqual equal;
     size_t id = hf(k_) % m_size;
-
 	// Verifica se já possui algum elemento na chave;
-    auto list = m_data_table[id];
+    auto& list = m_data_table[id];
     for(auto & element : list)
     {
         if(equal(k_, element.m_key))
@@ -62,7 +61,7 @@ inline bool HashTbl<KeyType,DataType, KeyHash, KeyEqual>::insert(const KeyType &
     }
     list.push_front(Entry(k_, d_));
 	++m_count;
-	return false;
+    return true;
 
 }
 
@@ -87,9 +86,7 @@ inline bool HashTbl<KeyType,DataType, KeyHash, KeyEqual>::empty( void ) const{
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline unsigned long int HashTbl<KeyType,DataType, KeyHash, KeyEqual>::count( void ) const{
-	if(m_count == 0)
-		return true;
-	return false;
+    return m_count;
 }
 
 
@@ -109,12 +106,17 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::clear(){
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::print() const{
 	std::cout << "--- HASHTABLE --- \n";
-
-	// Percorre a tabela.
-	for( auto & i : m_data_table )
-		// Percorre a lista de cada chave.
-		for( auto & j : i)
-            std::cout << "Chave: " << i.m_key << "  |  Dado: " << i.m_data << std::endl;
+    for(uint i = 0; i < m_size; ++i)
+    {
+        std::cout << "--- linha " << i << " ---\n";
+        std::cout << "[ ";
+        auto list = m_data_table[i];
+        for(auto & element : list )
+        {
+            std::cout << element.m_key << " ";
+        }
+        std::cout << "]\n";
+    }
 }
 
 

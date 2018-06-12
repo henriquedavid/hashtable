@@ -2,9 +2,8 @@
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::HashTbl( size_t tbl_size_){
-	// Verifica se o valor informado pelo usuário é diferente do padrão (11), se for diferente procura o maior primo após o número.
-	if(tbl_size_ != DEFAULT_SIZE )
-		tbl_size_ = nextPrimo(tbl_size_);
+    // Pega o próximo primo a partir do tamanoh passado.
+    tbl_size_ = nextPrimo(tbl_size_);
 
 	// O novo tamanho será o definido.
 	m_size = tbl_size_;
@@ -44,34 +43,31 @@ template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline bool HashTbl<KeyType,DataType, KeyHash, KeyEqual>::insert(const KeyType & k_, const DataType & d_)
 {
 
-	/*Verificar se possui espaço suficiente,
+    /* Verificar se possui espaço suficiente,
 	procurar se na chave já possui algum elemento,
 	se possuir inserir na frente da lista encadeada,
-	se não basta inserir o elemento na lista.*/
-    if(m_count / m_size >= 1.0)
-        rehash();
+    se não basta inserir o elemento na lista. */
 
     KeyHash hf;
     KeyEqual equal;
     size_t id = hf(k_) % m_size;
+
 	// Verifica se já possui algum elemento na chave;
     auto& list = m_data_table[id];
+
+    /*
+     * Caso o usuário insira uma chave que já esteja na tabela o novo dado não é inserido.
+     */
+    /// \note: A chave é o identificador do elemento, se ela já existe, não insera. Não é necessário comparar os dados.
     for(auto & element : list)
-    {
-        /*
-         * Caso o usuário insira uma chave que já possua, porém haja alguma
-         * diferença então as contas então adiciona, caso contrário já existe.
-         */
-        if(equal(k_, element.m_key)){
-            if( element.m_data == d_ )
+        if(equal(k_, element.m_key))
                 return false;
-            else{
-                list.push_front(Entry(k_,d_));
-                return true;
-            }
-        }
-    }
-    // Caso não possua adicione.
+
+    // Verifica o fator de carga atual da tabela
+    if(m_count / m_size >= 1.0)
+        rehash();
+
+    // adiciona o novo elemento
     list.push_front(Entry(k_, d_));
     // Incrementa o tamanho ocupado.
 	++m_count;
@@ -159,7 +155,7 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::clear(){
         auto& list = m_data_table[i];
         list.clear();
     }
-    delete [] m_data_table;
+    m_count = 0;
 }
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
@@ -182,10 +178,12 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::print() const{
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::rehash(){
+    // modifica o atributo que armazena o tamanho
+    m_size *= 2;
     // Alias para entrada
     using Entry = HashEntry< KeyType, DataType >;
     // Aloca o novo vetor
-    std::forward_list<Entry>* new_data_table = new std::forward_list<Entry>[nextPrimo(m_size*2)];
+    std::forward_list<Entry>* new_data_table = new std::forward_list<Entry>[m_size];
     // Copia o conteudo para a tabela nova
     for(uint i = 0; i < m_size; ++i)
     {
@@ -195,15 +193,13 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::rehash(){
     // Susbstitui o ponteiro antigo
     m_data_table.reset(new_data_table);
     // Atualiza o tamanho
-    m_size *= 2;
 }
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::~HashTbl(){
-    // Libera o espaço
+    // chama o método clear
+    clear();
     m_data_table.release();
-    // reseta as propriedades
-    m_count = 0;
     m_size = 0;
 }
 

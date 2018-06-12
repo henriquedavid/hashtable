@@ -83,12 +83,7 @@ A\+L\+I\+AS.
 {\footnotesize\ttfamily template$<$class Key\+Type , class Data\+Type , class Key\+Hash , class Key\+Equal $>$ \\
 \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Key\+Equal $>$\+::\hyperlink{classHashTbl}{Hash\+Tbl} (\begin{DoxyParamCaption}\item[{size\+\_\+t}]{tbl\+\_\+size\+\_\+ = {\ttfamily \hyperlink{classHashTbl_aeffa5b1a163fb6a09a18fd254a4d6dcf}{D\+E\+F\+A\+U\+L\+T\+\_\+\+S\+I\+ZE}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
-Construtor que aloca dinamicamente em $\ast$m\+\_\+data\+\_\+table um vetor cujo tamanho é determinado como sendo o menor número primo maior do que o valor especificado em tbl\+\_\+size\+\_\+ . Esta é a área de armazenamento dos dados, ou seja, cada elemento deste vetor é um ponteiro para uma lista de itens de tabela, ou \hyperlink{classHashEntry}{Hash\+Entry}.
-
-\begin{DoxyNote}{Nota}
-\+: valor padrão de argumentos e templates só são declarados no header 
-\end{DoxyNote}
-\mbox{\Hypertarget{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}\label{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}} 
+Construtor que aloca dinamicamente em $\ast$m\+\_\+data\+\_\+table um vetor cujo tamanho é determinado como sendo o menor número primo maior do que o valor especificado em tbl\+\_\+size\+\_\+ . Esta é a área de armazenamento dos dados, ou seja, cada elemento deste vetor é um ponteiro para uma lista de itens de tabela, ou \hyperlink{classHashEntry}{Hash\+Entry}. \mbox{\Hypertarget{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}\label{classHashTbl_a20c8c81ad708dba82b1c99cf8b59b97f}} 
 \index{Hash\+Tbl@{Hash\+Tbl}!````~Hash\+Tbl@{$\sim$\+Hash\+Tbl}}
 \index{````~Hash\+Tbl@{$\sim$\+Hash\+Tbl}!Hash\+Tbl@{Hash\+Tbl}}
 \subsubsection{\texorpdfstring{$\sim$\+Hash\+Tbl()}{~HashTbl()}}
@@ -127,9 +122,6 @@ bool \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+Hash, Ke
 
 Verifica se o número x é um número primo ou não. 
 
-\begin{DoxyNote}{Nota}
-\+: para checar se eh primo, se verificar se o resto da divisao de x com algum c dentro do intervalo \mbox{[}2, x-\/1\mbox{]} eh 0. 
-\end{DoxyNote}
 \mbox{\Hypertarget{classHashTbl_af0a640cbc448ffc7a874ec3ce2a28bd2}\label{classHashTbl_af0a640cbc448ffc7a874ec3ce2a28bd2}} 
 \index{Hash\+Tbl@{Hash\+Tbl}!empty@{empty}}
 \index{empty@{empty}!Hash\+Tbl@{Hash\+Tbl}}
@@ -159,9 +151,6 @@ size\+\_\+t \hyperlink{classHashTbl}{Hash\+Tbl}$<$ Key\+Type, Data\+Type, Key\+H
 
 Procura o próximo número primo após o valor inserido pelo usuário, ou o tamanho default da lista. 
 
-\begin{DoxyNote}{Nota}
-\+: o tamanho passado pode já ser primo, ou seja o cliente já irá ficar satisfeito com o tamanho 
-\end{DoxyNote}
 \mbox{\Hypertarget{classHashTbl_a4b78fa6241832fc1d4d8987df0f4fabe}\label{classHashTbl_a4b78fa6241832fc1d4d8987df0f4fabe}} 
 \index{Hash\+Tbl@{Hash\+Tbl}!print@{print}}
 \index{print@{print}!Hash\+Tbl@{Hash\+Tbl}}

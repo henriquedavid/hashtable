@@ -87,21 +87,16 @@ int main( void )
     	// Cria uma nova tabela para armazenar uma hash table com chave sendo o nome do cliente, o banco, a agencia e a conta.
         HashTbl<KeyType, App::Account, App::KeyHash<KeyType>, App::KeyEqual<KeyType>> ht(3);
         // Cria 3 novas contas.
-        App::Account acclist[] =
-        {
-            App::Account(0, "Conta 1", 321, 3732, 213623, 0.0),
-            App::Account(1, "Conta 2", 1867, 3652, 7657, 543643.25),
-            App::Account(2, "Conta 3", 184, 6437252, 64, 9994.6),
-            App::Account(2, "Conta 3", 184, 6437252, 64, 9994.6),
-            App::Account(0, "Conta 1", 321, 3732, 213623, 0.0),
-            App::Account(4, "Conta 5", 24, 365442, 765877, 9999476.6),
-            App::Account(6, "Conta 6", 1434, 645452, 6454, 965464664.99)
-        };
-        auto size = sizeof(acclist) / sizeof(App::Account);
-        for(uint c(0); c < size; ++c)
-        {
-            ht.insert(std::make_tuple<> (acclist[c].nome_, acclist[c].conta_, acclist[c].banco_, acclist[c].agencia_), acclist[c]);
-        }
+
+        App::Account acc1(0, "Pablo", 1224, 31732, 21323, 0.0);
+        App::Account acc2(1, "Henrique", 15434, 36542, 7657, 543643.25);
+        App::Account acc3(2, "Selan", 14234, 6452, 654, 999965464664.99);
+
+        ht.insert(std::make_tuple(acc1.nome_, acc1.conta_, acc1.banco_, acc1.agencia_), acc1);
+        ht.insert(std::make_tuple(acc2.nome_, acc2.conta_, acc2.banco_, acc2.agencia_), acc2);
+        ht.insert(std::make_tuple(acc3.nome_, acc3.conta_, acc3.banco_, acc3.agencia_), acc3);
+
+
         // Imprime todas as contas presentes na tabela.
         ht.print();
 

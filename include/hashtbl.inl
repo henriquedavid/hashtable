@@ -199,7 +199,6 @@ template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::~HashTbl(){
     // chama o método clear
     clear();
-    m_data_table.release();
     m_size = 0;
 }
 

@@ -18,6 +18,7 @@ int main( void )
 
     	// Cria a tabela
         HashTbl<int, App::Account, App::KeyHash<int>, App::KeyEqual<int>> ht(10);
+
         // Cria uma conta.
 
         App::Account acc1(15, "Pablo", 1224, 31732, 21323, 0.0);
@@ -42,6 +43,7 @@ int main( void )
         else
             std::cout << "Não foi possível encontrar!\n";
         ht.clear();
+
     }
 
     // Versão 2

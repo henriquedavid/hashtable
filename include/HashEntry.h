@@ -8,7 +8,13 @@ class HashEntry
 	public:
 		HashEntry( KeyType k_, DataType d_ ) : m_key(k_), m_data(d_)
 		{/* empty */}
+        ~HashEntry();
 		KeyType m_key;
 		DataType m_data;
 };
-
+template <typename KeyType, typename DataType, typename KeyHash, typename KeyEqual>
+inline HashEntry<KeyType, DataType, KeyHash, KeyEqual>::~HashEntry()
+{
+    m_key.~KeyType();
+    m_data.~DataType();
+}

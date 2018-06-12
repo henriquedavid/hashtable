@@ -86,11 +86,17 @@ int main( void )
         // Cria 3 novas contas.
         App::Account acc1(0, "Pablo", 1224, 31732, 21323, 0.0);
         App::Account acc2(1, "Henrique", 15434, 36542, 7657, 543643.25);
-        App::Account acc3(2, "Selan", 14234, 6452, 654, 999965464664.99);
+        App::Account acc3(2, "Selan", 14234, 6443252, 64, 999965464664.99);
+        App::Account acc4(0, "Samyr", 1224, 3173432, 2136223, 0.0);
+        App::Account acc5(1, "Daniel", 154324, 365442, 765877, 543643.25);
+        App::Account acc6(2, "Marjory", 143234, 645452, 6454, 999965464664.99);
         // Insere todas as 3 contas na tabela.
         ht.insert(std::make_tuple<> (acc1.nome_, acc1.conta_, acc1.banco_, acc1.agencia_), acc1);
         ht.insert(std::make_tuple<> (acc2.nome_, acc2.conta_, acc2.banco_, acc2.agencia_), acc2);
         ht.insert(std::make_tuple<> (acc3.nome_, acc3.conta_, acc3.banco_, acc3.agencia_), acc3);
+        ht.insert(std::make_tuple<> (acc4.nome_, acc4.conta_, acc4.banco_, acc4.agencia_), acc4);
+        ht.insert(std::make_tuple<> (acc5.nome_, acc5.conta_, acc5.banco_, acc5.agencia_), acc5);
+        ht.insert(std::make_tuple<> (acc6.nome_, acc6.conta_, acc6.banco_, acc6.agencia_), acc6);
         // Imprime todas as contas presentes na tabela.
         ht.print();
 

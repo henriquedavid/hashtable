@@ -1,6 +1,5 @@
 #include "hashtbl.h"
 
-/// \note: valor padrão de argumentos e templates só são declarados no header
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::HashTbl( size_t tbl_size_){
 	// Verifica se o valor informado pelo usuário é diferente do padrão (11), se for diferente procura o maior primo após o número.
@@ -19,7 +18,7 @@ inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::HashTbl( size_t tbl_size_){
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline bool HashTbl<KeyType, DataType, KeyHash, KeyEqual>::ehprimo(size_t x){
-    /// \note: para checar se eh primo, se verificar se o resto da divisao de x com algum c dentro do intervalo [2, x-1] eh 0.
+    // Verifica se o numero eh divisivel por alguem entre 2 e ele
     for(uint c = 2; c < x; ++c)
         if(x % c == 0)
             return false;
@@ -29,8 +28,8 @@ inline bool HashTbl<KeyType, DataType, KeyHash, KeyEqual>::ehprimo(size_t x){
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline size_t HashTbl<KeyType,DataType, KeyHash, KeyEqual>::nextPrimo(size_t x){
+    // Pega o proximo numero primo a partir de x
     size_t nextPri = x;
-    ///\note: o tamanho passado pode já ser primo, ou seja o cliente já irá ficar satisfeito com o tamanho
  
     while(ehprimo(nextPri) == false)
     {
@@ -183,20 +182,27 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::print() const{
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::rehash(){
+    // Alias para entrada
     using Entry = HashEntry< KeyType, DataType >;
+    // Aloca o novo vetor
     std::forward_list<Entry>* new_data_table = new std::forward_list<Entry>[nextPrimo(m_size*2)];
-
+    // Copia o conteudo para a tabela nova
     for(uint i = 0; i < m_size; ++i)
     {
         auto& list = m_data_table[i];
         new_data_table[i] = list;
     }
+    // Susbstitui o ponteiro antigo
     m_data_table.reset(new_data_table);
+    // Atualiza o tamanho
+    m_size *= 2;
 }
 
 template < class KeyType, class DataType, class KeyHash, class KeyEqual >
 inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::~HashTbl(){
+    // Libera o espaço
     m_data_table.release();
+    // reseta as propriedades
     m_count = 0;
     m_size = 0;
 }

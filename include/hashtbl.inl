@@ -11,7 +11,7 @@ inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::HashTbl( size_t tbl_size_){
 	m_count = 0;
 	// Cria lista dinâmica para armazenar as contas.
     using Entry = HashEntry< KeyType, DataType >;
-    m_data_table = std::unique_ptr<std::forward_list< Entry > [] > (new std::forward_list< Entry > [tbl_size_]);
+    m_data_table = std::unique_ptr<std::forward_list< Entry > [] > {new std::forward_list<Entry>[tbl_size_]};
 }
 
 
@@ -58,7 +58,6 @@ inline bool HashTbl<KeyType,DataType, KeyHash, KeyEqual>::insert(const KeyType &
     /*
      * Caso o usuário insira uma chave que já esteja na tabela o novo dado não é inserido.
      */
-    /// \note: A chave é o identificador do elemento, se ela já existe, não insera. Não é necessário comparar os dados.
     for(auto & element : list)
         if(equal(k_, element.m_key))
                 return false;
@@ -153,6 +152,10 @@ inline void HashTbl<KeyType,DataType, KeyHash, KeyEqual>::clear(){
     for(uint i = 0; i < m_size; ++i)
     {
         auto& list = m_data_table[i];
+        for(auto & element: list)
+        {
+            element.~Entry();
+        }
         list.clear();
     }
     m_count = 0;
@@ -201,4 +204,3 @@ inline HashTbl<KeyType,DataType, KeyHash, KeyEqual>::~HashTbl(){
     clear();
     m_size = 0;
 }
-
